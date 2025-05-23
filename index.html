@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAMILY - Music Streaming</title>
+       <link rel="website icon" type="png" href="1.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-music"></i>
+                <span>IBP MUSIC</span>
+                <i class="fas fa-times close-sidebar" id="close-sidebar"></i>
+            </div>
+            <ul class="menu">
+                <li class="active" data-section="home"><i class="fas fa-home"></i> Home</li>
+                <li data-section="search"><i class="fas fa-search"></i> Search</li>
+                <li data-section="favorites"><i class="fas fa-heart"></i> Favorites</li>
+                <li data-section="playlists"><i class="fas fa-list"></i> Playlists</li>
+            </ul>
+            
+            <!-- Playlists List -->
+            <div class="playlists-container">
+                <h3>Your Playlists</h3>
+                <ul class="playlists-list" id="playlists-list">
+                    <!-- Playlists will be added here dynamically -->
+                </ul>
+                <button class="create-playlist-btn" id="create-playlist-btn">
+                    <i class="fas fa-plus"></i> Create Playlist
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Search Section (hidden by default) -->
+            <div class="section" id="search-section" style="display: none;">
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Search for songs, artists, or albums...">
+                        <div class="search-suggestions" id="search-suggestions"></div>
+                    </div>
+                </div>
+                <div class="search-results" id="search-results"></div>
+            </div>
+
+            <!-- Navigation Bar -->
+            
+
+            <!-- Welcome Toast -->
+            <div id="welcome-toast" class="toast"> Welcome to IBP MUSIC! Enjoy the vibes. </div>
+
+            <!-- Home Section -->
+            <div class="section" id="home-section">
+                <div class="greeting">
+                    <h1>Good <span id="time-of-day">morning</span></h1>
+                    <div class="greeting-buttons">
+                        <button class="play-all-btn">
+                            <i class="fas fa-play"></i># Music #Moments #Memory Are Must
+                        </button>
+                    </div>
+                </div>
+
+                
+                <div class="song-grid" id="recent-songs"></div>
+
+                <div class="section-header">
+                    <h2>Trending Now</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="song-grid" id="trending-songs"></div>
+  <div class="section-header">
+                    <h2>Hip Hop</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="song-grid" id="hiphop-songs"></div>
+                <div class="section-header">
+                    <h2>Pop Hits</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="song-grid" id="pop-songs"></div>
+
+                <div class="section-header">
+                    <h2>Rock Classics</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="song-grid" id="rock-songs"></div>
+
+               
+
+            <!-- Favorites Section (hidden by default) -->
+            <div class="section" id="favorites-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Your Favorites</h2>
+                </div>
+                <div class="song-grid" id="favorites-songs"></div>
+            </div>
+
+            <!-- Playlists Section (hidden by default) -->
+            <div class="section" id="playlists-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Your Playlists</h2>
+                </div>
+                <div class="playlists-grid" id="playlists-grid"></div>
+            </div>
+
+            <!-- Current Playlist Section (hidden by default) -->
+            <div class="section" id="current-playlist-section" style="display: none;">
+                <div class="playlist-header">
+                    <div class="playlist-info">
+                        <h2 id="current-playlist-name">Playlist</h2>
+                        <p id="playlist-song-count">0 songs</p>
+                    </div>
+                    <div class="playlist-actions">
+                        <button class="play-all-btn">
+                            <i class="fas fa-play"></i> Play All
+                        </button>
+                        <button class="add-song-btn" id="add-song-to-playlist-btn">
+                            <i class="fas fa-plus"></i> Add Songs
+                        </button>
+                    </div>
+                </div>
+                <div class="song-list" id="current-playlist-songs"></div>
+            </div>
+        </div>
+
+        <!-- Create Playlist Modal -->
+        <div class="modal" id="create-playlist-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Create New Playlist</h2>
+                <input type="text" id="new-playlist-name" placeholder="Playlist name">
+                <button id="confirm-create-playlist">Create</button>
+            </div>
+        </div>
+
+        <!-- Add to Playlist Modal -->
+        <div class="modal" id="add-to-playlist-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Add to Playlist</h2>
+                <div class="playlist-options" id="playlist-options">
+                    <!-- Playlist options will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player -->
+    <div class="player">
+        <div class="song-info">
+            <img src="" alt="Album Cover" id="player-album-cover">
+            <div class="song-details">
+                <div id="player-song-title">No song selected</div>
+                <div id="player-song-artist">-</div>
+            </div>
+            <button id="favorite-btn"><i class="far fa-heart"></i></button>
+            <button id="add-to-playlist-btn"><i class="fas fa-list"></i></button>
+        </div>
+        <div class="player-controls">
+            <div class="control-buttons">
+                <button id="shuffle-btn"><i class="fas fa-random"></i></button>
+                <button id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                <button id="play-btn"><i class="fas fa-play"></i></button>
+                <button id="next-btn"><i class="fas fa-step-forward"></i></button>
+                <button id="repeat-btn"><i class="fas fa-redo"></i></button>
+            </div>
+            <div class="progress-container">
+                <span id="current-time">0:00</span>
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+       
+        <audio id="audio-player"></audio>
+    </div>
+
+    <!-- Fullscreen Player -->
+    <div class="fullscreen-player" id="fullscreen-player">
+        <div class="fullscreen-content">
+            <span class="close-fullscreen" id="close-fullscreen">&times;</span>
+            
+            <div class="album-art-container">
+                <img id="fullscreen-cover" src="" alt="Album Cover" class="album-cover-enhanced">
+                <div class="vinyl-overlay"></div>
+            </div>
+
+            <div class="song-info-fullscreen">
+                <h2 id="fullscreen-title">Song Title</h2>
+                <p id="fullscreen-artist">Artist Name</p>
+            </div>
+
+            <div class="fullscreen-controls">
+                <span id="fullscreen-current-time" class="time-text">0:00</span>
+                <div class="fullscreen-progress-bar" id="fullscreen-progress-bar">
+                    <div class="fullscreen-progress" id="fullscreen-progress"></div>
+                </div>
+                <span id="fullscreen-duration" class="time-text">0:00</span>
+            </div>
+
+            <div class="fullscreen-buttons">
+                <button id="fullscreen-shuffle" class="circle-btn"><i class="fas fa-random"></i></button>
+                <button id="fullscreen-prev" class="circle-btn"><i class="fas fa-step-backward"></i></button>
+                <button id="fullscreen-play" class="circle-btn play-button"><i class="fas fa-play"></i></button>
+                <button id="fullscreen-next" class="circle-btn"><i class="fas fa-step-forward"></i></button>
+                <button id="fullscreen-repeat" class="circle-btn"><i class="fas fa-redo"></i></button>
+            </div>
+
+            <div class="fullscreen-extras">
+                <button id="fullscreen-heart" class="circle-btn" title="Toggle Favorite">
+                    <i class="far fa-heart"></i>
+                </button>
+              
+            </div>
+
+            <button id="toggle-suggestions" class="suggestions-toggle">
+                <i class="fas fa-chevron-up"></i> Show Suggestions
+            </button>
+        </div>
+
+        <div class="suggested-section" id="suggested-section" style="display: none;">
+            <h3>Suggested Songs</h3>
+            <div class="song-grid" id="fullscreen-suggestions"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
